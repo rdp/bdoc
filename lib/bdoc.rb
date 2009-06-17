@@ -28,7 +28,7 @@ module Bdoc
         { :name => g,
           :description => gem.description,
           :summary => gem.summary,
-          :homepage => gem.homepage,
+          :homepage => gem.homepage || (gem.rubyforge_project ? "http://" + gem.rubyforge_project + ".rubyforge.org" : nil),
           :versions => installed_gems.find_all{|gem| 
             gem.name == g
             }.map{|gem|
