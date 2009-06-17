@@ -24,11 +24,18 @@ module Bdoc
         g.name if g.has_rdoc?
       }.compact.uniq.sort{|x,y| x.downcase <=> y.downcase}
       gems = gems.map do |g|
+
         gem = installed_gems.find_all{|gem| gem.name == g}.last
+        # calculate homepage if exists
+        homepage = gem.homepage 
+        homepage ||= "http://" + gem.rubyforge_project + ".rubyforge.org" if gem.rubyforge_project
+        homepage = nil if homepage == '' # disallow blank url (a la fastthread)
+
+
         { :name => g,
           :description => gem.description,
           :summary => gem.summary,
-          :homepage => gem.homepage || (gem.rubyforge_project ? "http://" + gem.rubyforge_project + ".rubyforge.org" : nil),
+          :homepage => homepage,
           :versions => installed_gems.find_all{|gem| 
             gem.name == g
             }.map{|gem|

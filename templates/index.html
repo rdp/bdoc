@@ -18,7 +18,7 @@ a.gemname:hover {
   color:#000; 
   background:#999; 
   -moz-border-radius: 2px; 
-  -webkit-border-radius: 3px; 
+  -webkit-border-radius: 2px; 
 }
 body { background: #aaa }
 #about {
@@ -162,8 +162,7 @@ body { background: #aaa }
           <a href="<%= gem[:versions].last[:rdoc_index] %>" class="gemname" title="<%= description %>" rel="<%= gem[:homepage] %>"><%= gem[:name] %></a>
         <% else %>
           <span class="gemname quiet" title="<%= description %>" >
-          <%= gem[:homepage] ? "<a href=#{gem[:homepage]} class=external_url>*#{gem[:name]}</a>" : "*#{gem[:name]}" %>
-	  </span>
+          <%= gem[:homepage] ? "<a href=#{gem[:homepage]} class=external_url>*#{gem[:name]}</a>" : "*#{gem[:name]}" %></span>
         <% end %>
         <span class="version hide"><%= gem[:versions].last[:version] %></span>
       </span>
