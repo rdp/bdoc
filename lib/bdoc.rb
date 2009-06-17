@@ -27,6 +27,7 @@ module Bdoc
         gem = installed_gems.find_all{|gem| gem.name == g}.last
         { :name => g,
           :description => gem.description,
+          :summary => gem.summary,
           :homepage => gem.homepage,
           :versions => installed_gems.find_all{|gem| 
             gem.name == g

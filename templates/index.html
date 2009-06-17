@@ -13,7 +13,7 @@ a.gemname:hover {
   color:#000; 
   background:#999; 
   -moz-border-radius: 2px; 
-  -webkit-border-radius: 2px; 
+  -webkit-border-radius: 3px; 
 }
 body { background: #aaa }
 #about {
@@ -151,11 +151,13 @@ body { background: #aaa }
     </div>
     <div id="nav">
       <% @gems.each do |gem| %>
+      <% description = ERB::Util.h(gem[:description] || gem[:summary] || ('(' + gem[:name] + ')')) %>
       <span class="gem">
         <% if gem[:versions].last[:rdoc_index]  %>
-        <a href="<%= gem[:versions].last[:rdoc_index] %>" class="gemname" title="<%= ERB::Util.h gem[:description] %>" rel="<%= gem[:homepage] %>"><%= gem[:name] %></a>
+          <a href="<%= gem[:versions].last[:rdoc_index] %>" class="gemname" title="<%= description %>" rel="<%= gem[:homepage] %>"><%= gem[:name] %></a>
         <% else %>
-        <span class="gemname quiet" title="<%= ERB::Util.h gem[:description] %>">*<%= gem[:name] %></span>
+          <span class="gemname quiet" title="<%= description %>" >
+	  <a href=<%= gem[:homepage] %>>*<%= gem[:name] %></a></span>
         <% end %>
         <span class="version hide"><%= gem[:versions].last[:version] %></span>
       </span>
