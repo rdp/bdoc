@@ -161,10 +161,12 @@ body { background: #aaa }
         <% if gem[:versions].last[:rdoc_index]  %>
           <a href="<%= gem[:versions].last[:rdoc_index] %>" class="gemname" title="<%= description %>" rel="<%= gem[:homepage] %>"><%= gem[:name] %></a>
         <% else %>
+          <span class="gemname quiet">
 	  <% if gem[:homepage] %>
-            *<a href="<%= gem[:homepage] %>" class="gemname" title="<%= description %>" rel="<%= gem[:homepage] %>"><%= gem[:name] %></a>
-         <% else %><span class="gemname quiet">*<%= gem[:name] %></span>
+            *<a href="<%= gem[:homepage] %>" class="external_url gemname" title="<%= description %>" rel="<%= gem[:homepage] %>"><%= gem[:name] %></a>
+         <% else %>*<%= gem[:name] %>
          <% end %>
+         </span>
         <% end %>
         <span class="version hide"><%= gem[:versions].last[:version] %></span>
       </span>
